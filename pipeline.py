@@ -19,7 +19,7 @@ from feature_engine.encoding import (
 )
 from feature_engine.transformation import LogTransformer
 
-from custom_preproc_classes import custom_preproc as pp
+import custom_preproc_classes.custom_preproc as pp
 from custom_preproc_classes.config.core import config
 
 

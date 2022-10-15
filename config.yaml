@@ -1,15 +1,15 @@
 # Data Files
-path_to_feature_file: "/Users/afanzott/Documents/RHI_DS/data/md_raw_dataset.csv"
-path_to_target_file: "/Users/afanzott/Documents/RHI_DS/data/md_target_dataset.csv"
+path_to_feature_file: "/Users/afanzott/Documents/RHI_Data_Science/data/md_raw_dataset.csv"
+path_to_target_file: "/Users/afanzott/Documents/RHI_Data_Science/data/md_target_dataset.csv"
 
 # Variables
 # The variable we are attempting to predict (target)
 target: target
 
-pipeline_save_file_path: /Users/afanzott/Documents/RHI_DS/trained_models/target_regression_output
+pipeline_save_file_path: "/Users/afanzott/Documents/RHI_Data_Science/trained_models/target_regression_output"
 
 #Pipeline to use for prediction
-predict_pipeline: "/Users/afanzott/Documents/RHI_DS/trained_models/target_regression_output_2022-10-15 12:52:24.joblib"
+predict_pipeline: "/Users/afanzott/Documents/RHI_Data_Science/trained_models/target_regression_output_2022-10-15 12:52:24.joblib"
 
 # Will cause syntax errors since they begin with numbers
 var_to_rename:
