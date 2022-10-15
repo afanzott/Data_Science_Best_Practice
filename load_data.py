@@ -13,7 +13,7 @@ def data_loading(path_features, path_target) -> pd.DataFrame:
 
     # columns to cast as Int64
     column_as_Int64 = config["feat_to_int"]
-    data_features.groups = data_features[column_as_Int64].astype(
+    data_features[column_as_Int64] = data_features[column_as_Int64].astype(
         "int64", errors="ignore")
 
     # merge both tables wrt groups & index
