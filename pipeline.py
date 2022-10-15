@@ -20,25 +20,8 @@ from feature_engine.encoding import (
 from feature_engine.transformation import LogTransformer
 
 from custom_preproc_classes import custom_preproc as pp
+from custom_preproc_classes.config.core import config
 
-import os
-
-import yaml
-from yaml.loader import SafeLoader
-
-PACKAGE_ROOT = os.path.dirname(os.path.abspath("train.py"))
-CONFIG_FILE_PATH = PACKAGE_ROOT + "/" + "config.yaml"
-
-
-def get_config_from_yaml(config_path):
-    if config_path:
-        with open(config_path, "r") as conf_file:
-            parsed_config = yaml.load(conf_file, Loader=SafeLoader)
-        return(parsed_config)
-    raise OSError(f"Did not find config file at path: {CONFIG_FILE_PATH}")
-
-
-config = get_config_from_yaml(CONFIG_FILE_PATH)
 
 params = {
     "n_estimators": config["n_estimators"],
