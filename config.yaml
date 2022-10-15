@@ -1,0 +1,141 @@
+# Data Files
+path_to_feature_file: "/Users/afanzott/Documents/RHI_DS/data/md_raw_dataset.csv"
+path_to_target_file: "/Users/afanzott/Documents/RHI_DS/data/md_target_dataset.csv"
+
+# Variables
+# The variable we are attempting to predict (target)
+target: target
+
+pipeline_save_file_path: /Users/afanzott/Documents/RHI_DS/trained_models/target_regression_output
+
+#Pipeline to use for prediction
+predict_pipeline: "/Users/afanzott/Documents/RHI_DS/trained_models/target_regression_output_2022-10-15 12:52:24.joblib"
+
+# Will cause syntax errors since they begin with numbers
+var_to_rename:
+  - 'Unnamed: 0': index 
+
+# Features to cast as Int64
+feat_to_int: groups
+
+# Features to cast to numeric
+feat_to_numeric: etherium_before_start
+
+# set train/test split
+test_size: 0.1
+
+# to set the random seed
+random_state: 0
+
+alpha: 0.001
+
+cat_vars:
+  - when
+  - super_hero_group
+  - crystal_type
+  - expected_start
+  - start_process
+  - start_subprocess1
+  - start_critical_subprocess1
+  - predicted_process_end
+  - process_end
+  - subprocess1_end
+  - reported_on_tower
+  - opened
+  - crystal_supergroup
+  - Cycle
+  - index
+  - place
+  - "Unnamed: 7"
+  - human_behavior_report
+  - groups
+  - tracking_times
+
+numerical_vars_with_na:
+  - crystal_weight
+  - first_factor_x
+  - final_factor_x
+  - previous_adamantium
+  - 'Unnamed: 17'
+  - etherium_before_start
+  - chemical_x
+  - raw_kryptonite
+  - argon
+  - pure_seastone
+  - diff_subprocess1
+  - diff_expected
+  - diff_process
+  - year_start_critical_subprocess1
+  - month_start_critical_subprocess1
+  - day_start_critical_subprocess1
+  - hour_start_critical_subprocess1
+  - minute_start_critical_subprocess1
+  - second_start_critical_subprocess1
+  - year_reported_on_tower
+  - month_reported_on_tower
+  - day_reported_on_tower
+  - hour_reported_on_tower
+  - minute_reported_on_tower
+  - second_reported_on_tower
+  - year_opened
+  - month_opened
+  - day_opened
+  - hour_opened
+  - minute_opened
+  - second_opened
+
+temporal_vars_step1:
+  - when
+  - expected_start
+  - start_process
+  - start_subprocess1
+  - start_critical_subprocess1
+  - predicted_process_end
+  - process_end
+  - subprocess1_end
+  - reported_on_tower
+  - opened
+
+temporal_vars_step2_1:
+  - diff_subprocess1
+  - subprocess1_end
+  - start_subprocess1
+
+temporal_vars_step2_2:
+  - diff_expected
+  - predicted_process_end
+  - expected_start
+
+temporal_vars_step2_3:
+  - diff_process
+  - process_end
+  - start_process
+  
+temporal_vars_step3_date:
+  - when
+
+temporal_vars_step3_datetime:
+  - start_critical_subprocess1
+  - reported_on_tower
+  - opened
+
+
+# variables to log transform
+numerical_log_vars:
+  - crystal_weight
+  - chemical_x
+  - final_factor_x
+  - pure_seastone
+
+categorical_vars_others:
+  - super_hero_group
+  - crystal_type
+  - Cycle
+
+#model_params
+n_estimators: 500
+max_depth: 4
+min_samples_split: 5
+learning_rate: 0.01
+loss: squared_error
+verbose: 5
