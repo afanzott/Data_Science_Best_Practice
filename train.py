@@ -13,7 +13,12 @@ from custom_preproc_classes.config.core import config
 
 
 def training(validation: bool) -> None:
-    """Train the model."""
+    """
+    This function trains the final model by utilizing the pipeline.py module.
+
+    Args:
+        validation: If true model validation charateristics like R2 or mse will be calculated and a validation plot will be shown.
+    """
 
     # read training data
     data = data_loading(path_features=config["path_to_feature_file"], path_target=config["path_to_target_file"])

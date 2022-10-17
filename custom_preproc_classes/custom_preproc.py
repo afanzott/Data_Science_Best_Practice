@@ -6,7 +6,9 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class TempVarMissingTransformer(BaseEstimator, TransformerMixin):
-    # Temporal elapsed time transformer
+    """
+    This class is used for the feature engine pipeline to transform temp vars with missing values
+    """
 
     def __init__(self, temp_vars):
 
@@ -16,12 +18,11 @@ class TempVarMissingTransformer(BaseEstimator, TransformerMixin):
         self.temp_vars = temp_vars
 
     def fit(self, X, y=None):
-        # we need this step to fit the sklearn pipeline
+
         return self
 
     def transform(self, X):
 
-        # so that we do not over-write the original dataframe
         X = X.copy()
 
         for var in self.temp_vars:
@@ -32,7 +33,9 @@ class TempVarMissingTransformer(BaseEstimator, TransformerMixin):
 
 
 class TempVarElapsedTimeTransformer(BaseEstimator, TransformerMixin):
-    # Temporal elapsed time transformer
+    """
+    This class is used for the feature engine pipeline to create columns with elapsed time between datetimes
+    """
 
     def __init__(self, name, var1, var2):
 
@@ -48,12 +51,11 @@ class TempVarElapsedTimeTransformer(BaseEstimator, TransformerMixin):
         self.name = name
 
     def fit(self, X, y=None):
-        # we need this step to fit the sklearn pipeline
+
         return self
 
     def transform(self, X):
 
-        # so that we do not over-write the original dataframe
         X = X.copy()
 
         X[self.name] = (X[self.var1] - X[self.var2]).dt.seconds / 60
@@ -64,7 +66,9 @@ class TempVarElapsedTimeTransformer(BaseEstimator, TransformerMixin):
 
 
 class TempVarSplitTransformer(BaseEstimator, TransformerMixin):
-    # Temporal elapsed time transformer
+    """
+    This class is used for the feature engine pipeline to split datetime columns into year, month, day, hour, minute, second
+    """
 
     def __init__(self, vars, date_or_dt):
 
@@ -77,12 +81,11 @@ class TempVarSplitTransformer(BaseEstimator, TransformerMixin):
         self.date_or_dt = date_or_dt
 
     def fit(self, X, y=None):
-        # we need this step to fit the sklearn pipeline
+
         return self
 
     def transform(self, X):
 
-        # so that we do not over-write the original dataframe
         X = X.copy()
 
         for var in self.vars:

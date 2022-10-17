@@ -4,6 +4,14 @@ from .config.core import config
 
 
 def data_loading(path_features, path_target) -> pd.DataFrame:
+    """
+    This function takes a path to the features .csv and the target .csv and creates a joined table after necessesary
+    preprocessing steps.
+
+    Args:
+        path_features: str containing the path to the features data .csv
+        path_target: str containing the path to the target data .csv
+    """
     # load data
     data_features = pd.read_csv(path_features, sep=";", index_col=False)
     target = pd.read_csv(path_target, sep=";")
@@ -34,7 +42,13 @@ def data_loading(path_features, path_target) -> pd.DataFrame:
 
 
 def data_loading_pred(data_file: str) -> pd.DataFrame:
+    """
+    This function takes a path to the data file .csv wanted for prediction and creates a pandas dataframe, which can be consumed
+    by a prediction model.
 
+    Args:
+        data_file: path str to the file which should be predicted
+    """
     # load data
     data = pd.read_csv(data_file, sep=";", index_col=False)
     # columns to rename

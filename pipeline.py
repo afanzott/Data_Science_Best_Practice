@@ -72,7 +72,7 @@ target_Val = Pipeline([
         tol=0.01, n_categories=1, variables=config["categorical_vars_others"]
     )),
 
-    # encode categorical and discrete variables using the target mean
+    # encode categorical and discrete variables wrt to the target mean
     ('categorical_encoder', OrdinalEncoder(
         encoding_method='ordered', variables=config["categorical_vars_others"])),
 
