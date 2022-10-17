@@ -9,5 +9,7 @@ To train a model just run train.py. Currently it will use the specified files un
 
 The train.py file utilizes a preprocessing pipeline created in pipeline.py to prepare the data for training. Successfully trained models will be stored as .pkl pipelines under trained_models. Therefore you have to change the variable "pipeline_save_file_path" in the "config_yaml" to your desired destination.
 
+Additionally via the parameter -v you have to provide a boolean value to indicate if you want to validate your model and see respective plots (True) or not (False).
+
 # Prediction
 For making predictions you have to execute the predict.py file. But first change the variable "predict_pipeline" in the "config.yaml" to the file with your trained pipeline. Additionally you have to serve a data file as an argument when executing. Just add "-d path" where path corresponds to the location of the file, which should be predicted.
