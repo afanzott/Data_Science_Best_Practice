@@ -1,5 +1,5 @@
-from ..config.core import config
-from .. import data_loading
+from custom_preproc_classes.config.core import config
+from custom_preproc_classes.load_data import data_loading
 
 
 def NAs_in_groups():
