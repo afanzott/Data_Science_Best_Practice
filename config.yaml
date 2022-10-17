@@ -2,6 +2,9 @@
 path_to_feature_file: "/Users/afanzott/Documents/RHI_Data_Science/data/md_raw_dataset.csv"
 path_to_target_file: "/Users/afanzott/Documents/RHI_Data_Science/data/md_target_dataset.csv"
 
+# Where to save the train and test data after training
+folder_train_test_data: "/Users/afanzott/Documents/RHI_Data_Science/data/"
+
 # Variables
 # The variable we are attempting to predict (target)
 target: target
