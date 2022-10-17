@@ -6,7 +6,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 from datetime import datetime
 import argparse
-from model_validation import validation
 
 import pipeline as pipe
 from custom_preproc_classes.load_data import data_loading
