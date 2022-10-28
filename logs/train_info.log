@@ -1,0 +1,27 @@
+2022-10-28 12:13:35,189 - train.py - INFO - Data loading successful.
+2022-10-28 12:13:35,196 - train.py - INFO - Fitting pipeline to training data...
+2022-10-28 12:13:49,647 - train.py - INFO - Pipeline fitted successfully.
+2022-10-28 12:13:49,849 - train.py - INFO - Data and Pipeline successfully saved.
+2022-10-28 12:14:15,155 - train.py - ERROR - Error loading data
+Traceback (most recent call last):
+  File "/Users/afanzott/Documents/RHI_Data_Science/train.py", line 28, in training
+    data = data_loading(path_features=config["path_to_feature_file"], path_target=config["path_to_target_file"])
+  File "/Users/afanzott/Documents/RHI_Data_Science/custom_preproc_classes/load_data.py", line 16, in data_loading
+    data_features = pd.read_csv(path_features, sep=";", index_col=False)
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 678, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 575, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 932, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1216, in _make_engine
+    self.handles = get_handle(  # type: ignore[call-overload]
+  File "/Users/afanzott/opt/miniconda3/envs/RHI_Challenge/lib/python3.10/site-packages/pandas/io/common.py", line 786, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '.f./RHI_Data_Science/data/md_raw_dataset.csv'
+2022-10-28 12:16:03,176 - train.py - INFO - Data loading successful.
+2022-10-28 12:16:03,182 - train.py - INFO - Fitting pipeline to training data...
+2022-10-28 12:16:17,510 - train.py - INFO - Pipeline fitted successfully.
+2022-10-28 12:16:17,700 - train.py - INFO - Data and Pipeline successfully saved.

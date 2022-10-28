@@ -6,10 +6,12 @@ from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 from datetime import datetime
 import argparse
+import os
 
 import pipeline as pipe
 from custom_preproc_classes.load_data import data_loading
 from custom_preproc_classes.config.core import config
+import logs
 
 
 def training(validation: bool) -> None:
@@ -20,9 +22,17 @@ def training(validation: bool) -> None:
         validation: If true model validation charateristics like R2 or mse will be calculated and a validation plot will be shown.
     """
 
-    # read training data
-    data = data_loading(path_features=config["path_to_feature_file"], path_target=config["path_to_target_file"])
+    # ======= READ TRAINING DATA =======
+    log = logs.setup_logger(file_name=config["logs_file_train"], logger_name=os.path.basename(__file__))
+    try:
+        data = data_loading(path_features=config["path_to_feature_file"], path_target=config["path_to_target_file"])
+        log.info("Data loading successful.")
+    except Exception as e:
+        log.error("Error loading data", exc_info=e)
 
+    # ==================================
+
+    # ========= MODEL TRAINING =========
     # divide train and test
     X_train, X_test, y_train, y_test = train_test_split(
         data.drop([config["target"]], axis=1),  # predictors
@@ -36,19 +46,34 @@ def training(validation: bool) -> None:
     y_test = np.log(y_test)
 
     # fit model
-    pipe.target_Val.fit(X_train, y_train)
+    try:
+        log.info("Fitting pipeline to training data...")
+        pipe.target_Val.fit(X_train, y_train)
+        log.info("Pipeline fitted successfully.")
+    except Exception as e:
+        log.error("Pipeline could not be fitted due to error:", exc_info=e)
 
-    # persist trained model
-    destination_file = config["pipeline_save_file_path"] + "_" + str(datetime.now())[:-7] + ".joblib"
-    joblib.dump(pipe.target_Val, destination_file)
+    # ===================================
 
-    # persist train and test data
-    X_train.to_csv(config["folder_train_test_data"] + "X_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
-    X_test.to_csv(config["folder_train_test_data"] + "X_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+    # ====== STORING RESULTS DATA =======
+    try:
+        # persist trained model
+        destination_file = config["pipeline_save_file_path"] + "_" + str(datetime.now())[:-7] + ".joblib"
+        joblib.dump(pipe.target_Val, destination_file)
 
-    y_train.to_csv(config["folder_train_test_data"] + "y_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
-    y_test.to_csv(config["folder_train_test_data"] + "y_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+        # persist train and test data
+        X_train.to_csv(config["folder_train_test_data"] + "X_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+        X_test.to_csv(config["folder_train_test_data"] + "X_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+        y_train.to_csv(config["folder_train_test_data"] + "y_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+        y_test.to_csv(config["folder_train_test_data"] + "y_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
 
+        log.info("Data and Pipeline successfully saved.")
+    except Exception as e:
+        log.error("Data could not be persisted due to error:", exc_info=e)
+
+    # =====================================
+
+    # ========= MODEL VALIDATION ==========
     # model validation if passed by the user
     if validation is True:
         # determine mse, rmse and r2 on the training data
@@ -80,6 +105,7 @@ def training(validation: bool) -> None:
         plt.ylabel('Predicted target value')
         plt.title('Evaluation of GBM Predictions')
         plt.show()
+    # =======================================
 
 
 if __name__ == "__main__":
