@@ -10,8 +10,13 @@ import argparse
 import os
 
 
-def make_prediction(input_data: pd.DataFrame) -> dict:
-    """Make a prediction using a saved model pipeline."""
+def make_prediction(input_data: str) -> dict:
+    """
+    This function makes a prediction using a saved model pipeline.
+
+    Args:
+        input_data: Path to the input data file
+    """
 
     # ======= READ PREDICTION DATA =======
     log = logs.setup_logger(file_name=config["logs_file_predict"], logger_name=os.path.basename(__file__))
@@ -31,8 +36,14 @@ def make_prediction(input_data: pd.DataFrame) -> dict:
         log.error("Error loading pipeline", exc_info=e)
     # ====================================
 
-    predictions = target_pipeline.predict(X=data)
-    results = [np.exp(pred) for pred in predictions]
+    # =========== PREDICT DATA ===========
+    try:
+        predictions = target_pipeline.predict(X=data)
+        results = [np.exp(pred) for pred in predictions]
+        log.info("Data predicted successfully.")
+    except Exception as e:
+        log.error("Error during prediction", exc_info=e)
+    # ====================================
 
     return results
 
