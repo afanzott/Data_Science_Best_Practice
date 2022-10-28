@@ -75,7 +75,7 @@ def training(validation: bool) -> None:
         print()
 
         # show real value vs. predicted as plot
-        plt.scatter(y_test, pred)
+        plt.scatter(np.exp(y_test), np.exp(pred))
         plt.xlabel('True target value')
         plt.ylabel('Predicted target value')
         plt.title('Evaluation of GBM Predictions')
