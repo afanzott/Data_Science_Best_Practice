@@ -5,7 +5,7 @@ Repo for the Data Science Challenge @RHI
 Clone the repo and create the conda environment from the `RHI_Challenge_env.yaml` file via `conda env create -f RHI_Challenge_env.yaml` and activate it.
 
 # Tests
-Tests can be executed via `python -m unittest` from the root folder.
+Tests can be executed via `python -m unittest -v` from the root folder.
 
 # Logging
 Log files for training and prediction can be found in the logs folder.
