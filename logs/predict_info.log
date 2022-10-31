@@ -5,3 +5,6 @@
 2022-10-28 12:21:33,283 - predict.py - INFO - Data loading successful.
 2022-10-28 12:21:33,610 - predict.py - INFO - Pipeline loaded successfully.
 2022-10-28 12:21:40,713 - predict.py - INFO - Data predicted successfully.
+2022-10-31 09:52:58,505 - predict.py - INFO - Data loading successful.
+2022-10-31 09:52:58,870 - predict.py - INFO - Pipeline loaded successfully.
+2022-10-31 09:53:07,122 - predict.py - INFO - Data predicted successfully.

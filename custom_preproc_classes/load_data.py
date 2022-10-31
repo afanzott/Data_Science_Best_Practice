@@ -19,11 +19,6 @@ def data_loading(path_features, path_target) -> pd.DataFrame:
     # columns to rename
     data_features.rename(columns=config["var_to_rename"][0], inplace=True)
 
-    # columns to cast as Int64
-    column_as_Int64 = config["feat_to_int"]
-    data_features[column_as_Int64] = data_features[column_as_Int64].astype(
-        "int64", errors="ignore")
-
     # merge both tables wrt groups & index
     data_features = data_features.loc[~data_features.groups.isnull(), :]
     data = pd.merge(data_features, target, how="inner", on=["groups", "index"])
@@ -50,11 +45,6 @@ def data_loading_pred(data_file: str) -> pd.DataFrame:
     data = pd.read_csv(data_file, sep=";", index_col=False)
     # columns to rename
     data.rename(columns=config["var_to_rename"][0], inplace=True)
-
-    # columns to cast as Int64
-    column_as_Int64 = config["feat_to_int"]
-    data[column_as_Int64] = data[column_as_Int64].astype(
-        "int64", errors="ignore")
 
     # merge both tables wrt groups & index
     data = data.loc[~data.groups.isnull(), :]
