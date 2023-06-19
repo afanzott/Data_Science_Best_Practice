@@ -1,8 +1,8 @@
 # RHI-DS-Challenge
-Repo for the Data Science Challenge @RHI
+Repo for the Data Science Best Practice Review
 
 # Setup
-Clone the repo and create the conda environment from the `RHI_Challenge_env.yaml` file via `conda env create -f RHI_Challenge_env.yaml` and activate it.
+Clone the repo and create the conda environment from the `Best_Practice_env.yaml` file via `conda env create -f Best_Practice_env.yaml` and activate it.
 
 # Tests
 Tests can be executed via `python -m unittest -v` from the root folder.
