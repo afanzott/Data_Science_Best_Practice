@@ -1,4 +1,4 @@
-# RHI-DS-Challenge
+# Best-Practice-Data-Science
 Repo for the Data Science Best Practice Review
 
 # Setup
