@@ -1,18 +1,18 @@
 # Data Files
-path_to_feature_file: "../RHI_Data_Science/data/md_raw_dataset.csv"
-path_to_target_file: "../RHI_Data_Science/data/md_target_dataset.csv"
+path_to_feature_file: "../Data_Science_Best_Practice/data/md_raw_dataset.csv"
+path_to_target_file: "../Data_Science_Best_Practice/data/md_target_dataset.csv"
 
 # Where to save the train and test data after training
-folder_train_test_data: "../RHI_Data_Science/data/"
+folder_train_test_data: "../Data_Science_Best_Practice/data/"
 
 # Variables
 # The variable we are attempting to predict (target)
 target: target
 
-pipeline_save_file_path: "../RHI_Data_Science/trained_models/target_regression_output"
+pipeline_save_file_path: "../Data_Science_Best_Practice/trained_models/target_regression_output"
 
 #Pipeline to use for prediction
-predict_pipeline: "../RHI_Data_Science/trained_models/target_regression_output_2022-10-15 12:52:24.joblib"
+predict_pipeline: "../Data_Science_Best_Practice/trained_models/target_regression_output_2022-10-15 12:52:24.joblib"
 
 # Will cause syntax errors since they begin with numbers
 var_to_rename:
@@ -144,5 +144,5 @@ loss: squared_error
 verbose: 5
 
 #logs filename
-logs_file_train: ../RHI_Data_Science/logs/train_info.log
-logs_file_predict: ../RHI_Data_Science/logs/predict_info.log
+logs_file_train: ../Data_Science_Best_Practice/logs/train_info.log
+logs_file_predict: ../Data_Science_Best_Practice/logs/predict_info.log
