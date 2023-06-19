@@ -1,5 +1,5 @@
 # Best-Practice-Data-Science
-Repo for the Data Science Best Practice Review
+Repo for the Data Science Best Practice Review (Expert Review)
 
 # Setup
 Clone the repo and create the conda environment from the `Best_Practice_env.yaml` file via `conda env create -f Best_Practice_env.yaml` and activate it.
