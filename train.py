@@ -14,7 +14,22 @@ from custom_preproc_classes.config.core import config
 import logs
 
 
-def training(validation: bool) -> None:
+def parse_bool(bool_input: str):
+    """
+    This function allows to parse a boolian value when running in terminal.
+
+    Args:
+        - bool_input: Allowed values are "T", for True, or "F", for False
+    """
+    if bool_input == "T":
+        return True
+    elif bool_input == "F":
+        return False
+    else:
+        raise ValueError("bool_input must be T (for True) or F (for False)")
+
+
+def training(validation: str) -> None:
     """
     This function trains the final model by utilizing the pipeline.py module.
 
@@ -75,6 +90,8 @@ def training(validation: bool) -> None:
 
     # ========= MODEL VALIDATION ==========
     # model validation if passed by the user
+    validation = parse_bool(validation)
+
     if validation is True:
         # determine mse, rmse and r2 on the training data
         pred = pipe.target_Val.predict(X_train)
@@ -111,7 +128,7 @@ def training(validation: bool) -> None:
 if __name__ == "__main__":
     # add argument if model validation should be done
     parser = argparse.ArgumentParser()
-    parser.add_argument("-v", "--validation", required=True, type=bool)
+    parser.add_argument("-v", "--validation", required=True, type=str, help="Use T for True and F for False")
 
     args = parser.parse_args()
     validation = args.validation
