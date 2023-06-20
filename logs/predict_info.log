@@ -8,3 +8,114 @@
 2022-10-31 09:52:58,505 - predict.py - INFO - Data loading successful.
 2022-10-31 09:52:58,870 - predict.py - INFO - Pipeline loaded successfully.
 2022-10-31 09:53:07,122 - predict.py - INFO - Data predicted successfully.
+2023-06-20 14:51:01,745 - predict.py - ERROR - Error loading data
+Traceback (most recent call last):
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3629, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 136, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 163, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5198, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5206, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'etherium_before_start'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 24, in make_prediction
+    data = data_loading_pred(input_data)
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/custom_preproc_classes/load_data.py", line 54, in data_loading_pred
+    data[config["feat_to_numeric"]], errors="coerce")
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/core/frame.py", line 3505, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3631, in get_loc
+    raise KeyError(key) from err
+KeyError: 'etherium_before_start'
+2023-06-20 14:51:02,483 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 14:51:02,483 - predict.py - ERROR - Error during prediction
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 46, in make_prediction
+    predictions = target_pipeline.predict(X=data)
+UnboundLocalError: local variable 'data' referenced before assignment
+2023-06-20 16:16:20,645 - predict.py - ERROR - Error loading data
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 27, in make_prediction
+    data = data_loading_pred(input_data)
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/custom_preproc_classes/load_data.py", line 45, in data_loading_pred
+    data = pd.read_csv(data_file, sep=";", index_col=False)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 678, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 575, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 932, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1216, in _make_engine
+    self.handles = get_handle(  # type: ignore[call-overload]
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/common.py", line 786, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/data/prediction_samples/prediction_sample_7339.csv'
+2023-06-20 16:16:21,381 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 16:16:21,381 - predict.py - ERROR - Error during prediction
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 49, in make_prediction
+    predictions = target_pipeline.predict(X=data)
+UnboundLocalError: local variable 'data' referenced before assignment
+2023-06-20 16:18:21,783 - predict.py - ERROR - Error loading data
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 27, in make_prediction
+    data = data_loading_pred(input_data)
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/custom_preproc_classes/load_data.py", line 45, in data_loading_pred
+    data = pd.read_csv(data_file, sep=";", index_col=False)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 678, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 575, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 932, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1216, in _make_engine
+    self.handles = get_handle(  # type: ignore[call-overload]
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/pandas/io/common.py", line 786, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/data/prediction_samples/prediction_sample_7339.csv'
+2023-06-20 16:18:22,513 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 16:18:22,513 - predict.py - ERROR - Error during prediction
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 49, in make_prediction
+    predictions = target_pipeline.predict(X=data)
+UnboundLocalError: local variable 'data' referenced before assignment
+2023-06-20 16:19:20,544 - predict.py - INFO - Data loading successful.
+2023-06-20 16:19:21,269 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 16:19:21,288 - predict.py - ERROR - Error during prediction
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 49, in make_prediction
+    predictions = target_pipeline.predict(X=data)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/sklearn/pipeline.py", line 457, in predict
+    Xt = transform.transform(Xt)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/imputation/missing_indicator.py", line 141, in transform
+    X = self._transform(X)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/imputation/base_imputer.py", line 55, in _transform
+    _check_X_matches_training_df(X, self.n_features_in_)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/dataframe_checks.py", line 237, in _check_X_matches_training_df
+    raise ValueError(
+ValueError: The number of columns in this dataset is different from the one used to fit this transformer (when using the fit() method).
+2023-06-20 16:29:58,059 - predict.py - INFO - Data loading successful.
+2023-06-20 16:29:58,788 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 16:29:58,806 - predict.py - ERROR - Error during prediction
+Traceback (most recent call last):
+  File "/Users/pdanninger/Documents/Projects/Data_Science_Best_Practice/predict.py", line 49, in make_prediction
+    predictions = target_pipeline.predict(X=data)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/sklearn/pipeline.py", line 457, in predict
+    Xt = transform.transform(Xt)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/imputation/missing_indicator.py", line 141, in transform
+    X = self._transform(X)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/imputation/base_imputer.py", line 55, in _transform
+    _check_X_matches_training_df(X, self.n_features_in_)
+  File "/Users/pdanninger/opt/miniconda3/envs/Best_Practice_env/lib/python3.10/site-packages/feature_engine/dataframe_checks.py", line 237, in _check_X_matches_training_df
+    raise ValueError(
+ValueError: The number of columns in this dataset is different from the one used to fit this transformer (when using the fit() method).
+2023-06-20 16:35:25,134 - predict.py - INFO - Data loading successful.
+2023-06-20 16:35:25,874 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-20 16:35:25,908 - predict.py - INFO - Data predicted successfully.
