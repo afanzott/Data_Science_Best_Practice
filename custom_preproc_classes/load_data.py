@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 from .config.core import config
 
@@ -43,6 +44,7 @@ def data_loading_pred(data_file: str) -> pd.DataFrame:
     """
     # load data
     data = pd.read_csv(data_file, sep=";", index_col=False)
+    
     # columns to rename
     data.rename(columns=config["var_to_rename"][0], inplace=True)
 

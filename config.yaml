@@ -5,6 +5,9 @@ path_to_target_file: "../Data_Science_Best_Practice/data/md_target_dataset.csv"
 # Where to save the train and test data after training
 folder_train_test_data: "../Data_Science_Best_Practice/data/train_test_data/"
 
+# Where to save potential prediction samples
+folder_prediction_samples: "../Data_Science_Best_Practice/data/prediction_samples/"
+
 # Variables
 # The variable we are attempting to predict (target)
 target: target
