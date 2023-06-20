@@ -12,6 +12,8 @@ import pipeline as pipe
 from custom_preproc_classes.load_data import data_loading
 from custom_preproc_classes.config.core import config
 import logs
+import mlflow
+
 
 
 def parse_bool(bool_input: str):
@@ -47,6 +49,7 @@ def training(validation: str) -> None:
 
     # ==================================
 
+
     # ========= MODEL TRAINING =========
     # divide train and test
     X_train, X_test, y_train, y_test = train_test_split(
@@ -60,31 +63,65 @@ def training(validation: str) -> None:
     y_train = np.log(y_train)
     y_test = np.log(y_test)
 
-    # fit model
-    try:
-        log.info("Fitting pipeline to training data...")
-        pipe.target_Val.fit(X_train, y_train)
-        log.info("Pipeline fitted successfully.")
-    except Exception as e:
-        log.error("Pipeline could not be fitted due to error:", exc_info=e)
-
-    # ===================================
-
     # ====== STORING RESULTS DATA =======
     try:
-        # persist trained model
-        destination_file = config["pipeline_save_file_path"] + "_" + str(datetime.now())[:-7] + ".joblib"
-        joblib.dump(pipe.target_Val, destination_file)
-
         # persist train and test data
-        X_train.to_csv(config["folder_train_test_data"] + "X_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
-        X_test.to_csv(config["folder_train_test_data"] + "X_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
-        y_train.to_csv(config["folder_train_test_data"] + "y_train_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
-        y_test.to_csv(config["folder_train_test_data"] + "y_test_" + str(datetime.now())[:-7] + ".csv", sep=";", header=True)
+        X_train.to_csv(config["folder_train_test_data"] + "X_train.csv", sep=";", header=True)
+        X_test.to_csv(config["folder_train_test_data"] + "X_test.csv", sep=";", header=True)
+        y_train.to_csv(config["folder_train_test_data"] + "y_train.csv", sep=";", header=True)
+        y_test.to_csv(config["folder_train_test_data"] + "y_test.csv", sep=";", header=True)
 
-        log.info("Data and Pipeline successfully saved.")
+        log.info("Training and test data successfully saved.")
     except Exception as e:
         log.error("Data could not be persisted due to error:", exc_info=e)
+
+    # ---- MLFlow Run ---- #
+    mlflow.set_tracking_uri("sqlite:///mlruns.db")
+    mlflow.set_experiment("Best Practice")
+
+    # Designated MLFlow run name
+    run_name = "mlflow_run_" + "best_practice" + "_" + str(datetime.now())[:-7]
+    print(run_name)
+
+    # fit model
+    with mlflow.start_run(run_name=run_name):
+        try:
+            log.info("Fitting pipeline to training data...")
+            target_pipeline = pipe.target_Val.fit(X_train, y_train)
+            log.info("Pipeline fitted successfully.")
+        except Exception as e:
+            log.error("Pipeline could not be fitted due to error:", exc_info=e)
+
+        try:
+            log.info("Prediction and mlflow versioning started...")
+            pred_train = target_pipeline.predict(X_train)
+            pred_test = target_pipeline.predict(X_test)
+
+            performance_dict = {"mse_train": round(int(mean_squared_error(np.exp(y_train), np.exp(pred_train))), 2),
+                                "mse_test": round(int(mean_squared_error(np.exp(y_test), np.exp(pred_test))), 2),
+                                "rmse_train": round(int(mean_squared_error(np.exp(y_train), np.exp(pred_train), squared=False)), 2),
+                                "rmse_test": round(int(mean_squared_error(np.exp(y_test), np.exp(pred_test), squared=False)), 2),
+                                "r2_train": round(r2_score(np.exp(y_train), np.exp(pred_train)), 2),
+                                "r2_test": round(r2_score(np.exp(y_test), np.exp(pred_test)), 2)
+                                }
+
+            # MLFlow loggings
+            
+            for key, value in performance_dict.items():
+                mlflow.log_metric(key, value)
+
+            for key, value in pipe.params.items(): 
+                mlflow.log_param(key, value)
+
+            #mlflow.log_artifact(train_data_path)
+            #mlflow.log_artifact(test_data_path)
+            mlflow.sklearn.log_model(sk_model=target_pipeline, artifact_path="model")
+            log.info("Prediction and mlflow versioning performed successfully.")
+
+        except Exception as e:
+            log.error("Prediction and mlflow loggings could not be completed:", exc_info=e)
+
+    
 
     # =====================================
 
