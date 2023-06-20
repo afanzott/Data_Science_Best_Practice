@@ -3,7 +3,7 @@ path_to_feature_file: "../Data_Science_Best_Practice/data/md_raw_dataset.csv"
 path_to_target_file: "../Data_Science_Best_Practice/data/md_target_dataset.csv"
 
 # Where to save the train and test data after training
-folder_train_test_data: "../Data_Science_Best_Practice/data/"
+folder_train_test_data: "../Data_Science_Best_Practice/data/train_test_data/"
 
 # Variables
 # The variable we are attempting to predict (target)
