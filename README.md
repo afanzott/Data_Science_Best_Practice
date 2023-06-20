@@ -19,3 +19,7 @@ Additionally via the parameter -v you have to provide a boolean value to indicat
 
 # Prediction
 For making predictions you have to execute the predict.py file. But first change the variable `predict_pipeline` in the `config.yaml` to the file with your trained pipeline. Additionally you have to serve a data file as an argument when executing. Just add `-d path` where path corresponds to the location of the file, which should be predicted.
+
+# Viewing the results
+To view the results of the trained models use `mlflow ui --backend-store-uri sqlite:///mlruns.db --port 5000 &` and go to http://127.0.0.1:5000/
+To stop the running server use `CTRL+C` and type: `pkill -f unicorn`
