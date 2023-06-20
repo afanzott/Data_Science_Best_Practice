@@ -113,8 +113,7 @@ def training(validation: str) -> None:
             for key, value in pipe.params.items(): 
                 mlflow.log_param(key, value)
 
-            #mlflow.log_artifact(train_data_path)
-            #mlflow.log_artifact(test_data_path)
+            mlflow.log_artifact(config["folder_train_test_data"])
             mlflow.sklearn.log_model(sk_model=target_pipeline, artifact_path="model")
             log.info("Prediction and mlflow versioning performed successfully.")
 
