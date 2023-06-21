@@ -53,6 +53,8 @@ def make_prediction(input_data: str) -> dict:
         log.error("Error during prediction", exc_info=e)
     # ====================================
 
+
+    print("Prediction: " + str(round(results[0], 2)))
     return results
 
 
