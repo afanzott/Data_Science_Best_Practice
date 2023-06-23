@@ -131,3 +131,6 @@ ValueError: The number of columns in this dataset is different from the one used
 2023-06-21 07:33:34,868 - predict.py - INFO - Data loading successful.
 2023-06-21 07:33:35,602 - predict.py - INFO - Pipeline loaded successfully.
 2023-06-21 07:33:35,637 - predict.py - INFO - Data predicted successfully.
+2023-06-23 09:28:22,133 - predict.py - INFO - Data loading successful.
+2023-06-23 09:28:25,017 - predict.py - INFO - Pipeline loaded successfully.
+2023-06-23 09:28:25,062 - predict.py - INFO - Data predicted successfully.
