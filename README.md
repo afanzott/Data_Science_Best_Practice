@@ -25,3 +25,8 @@ For making predictions you have to execute the predict.py file. The script uses 
 # Viewing the results on MLFlow
 To view the results of the trained models use `mlflow ui --backend-store-uri sqlite:///mlruns.db --port 5000 &` and go to http://127.0.0.1:5000/
 To stop the running server use `CTRL+C` and type: `pkill -f unicorn`
+
+# Make
+The repository's `Makefile` contains certain rules to facilitate the execution of commands. You can add any additional rule to it if you want. Execute the rules simply by adding `make` before the rule (i.e. `make train`) Here are some examples:
+- train: trains a new model and provides a validation of the results (change the argument to F if you do not wish to see the validation results)
+- predict: predicts the outcome of the registered model for a new data input (change the path of the data input if necessary)
