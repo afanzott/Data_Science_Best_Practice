@@ -15,7 +15,6 @@ import logs
 import mlflow
 
 
-
 def parse_bool(bool_input: str):
     """
     This function allows to parse a boolian value when running in terminal.
@@ -48,7 +47,6 @@ def training(validation: str) -> None:
         log.error("Error loading data", exc_info=e)
 
     # ==================================
-
 
     # ========= MODEL TRAINING =========
     # divide train and test
@@ -106,11 +104,11 @@ def training(validation: str) -> None:
                                 }
 
             # MLFlow loggings
-            
+
             for key, value in performance_dict.items():
                 mlflow.log_metric(key, value)
 
-            for key, value in pipe.params.items(): 
+            for key, value in pipe.params.items():
                 mlflow.log_param(key, value)
 
             mlflow.log_artifact(config["folder_train_test_data"])
@@ -119,8 +117,6 @@ def training(validation: str) -> None:
 
         except Exception as e:
             log.error("Prediction and mlflow loggings could not be completed:", exc_info=e)
-
-    
 
     # =====================================
 
