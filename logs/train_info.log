@@ -22,3 +22,9 @@
 2023-06-23 09:28:57,547 - train.py - INFO - Pipeline fitted successfully.
 2023-06-23 09:28:57,547 - train.py - INFO - Prediction and mlflow versioning started...
 2023-06-23 09:29:07,060 - train.py - INFO - Prediction and mlflow versioning performed successfully.
+2023-06-26 10:17:17,610 - train.py - INFO - Data loading successful.
+2023-06-26 10:17:17,775 - train.py - INFO - Training and test data successfully saved.
+2023-06-26 10:17:18,319 - train.py - INFO - Fitting pipeline to training data...
+2023-06-26 10:17:32,241 - train.py - INFO - Pipeline fitted successfully.
+2023-06-26 10:17:32,241 - train.py - INFO - Prediction and mlflow versioning started...
+2023-06-26 10:17:41,026 - train.py - INFO - Prediction and mlflow versioning performed successfully.
